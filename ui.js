@@ -8,8 +8,12 @@ const t=(o)=>o[lang];
 /* ---------- section HTML ---------- */
 function section(key){
   const d=DATA[key];
-  const head=`<div class="sec-head"><div class="eyebrow">${d.num} · ${t(d.title)}</div>
-    <h2>${t(d.title)}</h2><p class="lead">${t(d.lead)}</p></div>`;
+  /* the figure removes itself if the file is not there yet */
+  const fig=d.fig?`<div class="sec-fig"><img src="${d.fig}" alt="" aria-hidden="true"
+      onerror="this.closest('.sec-fig').remove()"></div>`:'';
+  const head=`<div class="sec-head">
+      <div><div class="eyebrow">${d.num} · ${t(d.title)}</div>
+        <h2>${t(d.title)}</h2><p class="lead">${t(d.lead)}</p></div>${fig}</div>`;
   return `<div class="sec">${head}${({me:me,images:images,video:video,writing:writing})[key]()}</div>`;
 }
 
@@ -26,10 +30,24 @@ function me(){
     </div></div>`;
 }
 
+let cat='all';
+function count(id){return id==='all'?DATA.images.items.length
+  :DATA.images.items.filter(i=>i.c===id).length}
 function images(){
-  return `<div class="gal">${DATA.images.items.map((im,i)=>
+  const cats=[{id:'all',t:DATA.ui.all},...DATA.images.cats].filter(c=>count(c.id));
+  if(!cats.some(c=>c.id===cat))cat='all';
+  return `<div class="chips">${cats.map(c=>
+      `<button class="chip${c.id===cat?' on':''}" data-c="${c.id}" type="button">
+         ${t(c.t)}<b>${count(c.id)}</b></button>`).join('')}</div>
+    <div class="gal">${gallery()}</div>`;
+}
+/* shown() is what the lightbox steps through, so filtering and the
+   lightbox can never disagree about which image index 3 is */
+function shown(){return DATA.images.items.filter(im=>cat==='all'||im.c===cat)}
+function gallery(){
+  return shown().map((im,i)=>
     `<figure data-i="${i}"><img src="${im.src}" alt="${t(im.t)}" loading="lazy">
-       <figcaption>${t(im.t)}</figcaption></figure>`).join('')}</div>`;
+       <figcaption>${t(im.t)}</figcaption></figure>`).join('');
 }
 
 function video(){
@@ -75,7 +93,7 @@ function overlays(){
   });
 }
 function step(n){
-  const it=DATA.images.items;
+  const it=shown();if(!it.length)return;
   gi=(gi+n+it.length)%it.length;
   box.querySelector('img').src=it[gi].src;
   box.querySelector('.cap').textContent=`${t(it[gi].t)} — ${gi+1} ${t(DATA.ui.of)} ${it.length}`;
@@ -99,6 +117,11 @@ function closeReader(){reader.classList.remove('on')}
 
 /* ---------- wire a freshly-rendered section ---------- */
 function bind(root){
+  root.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+    cat=c.dataset.c;
+    root.querySelectorAll('.chip').forEach(o=>o.classList.toggle('on',o.dataset.c===cat));
+    const g=root.querySelector('.gal');g.innerHTML=gallery();bind(root);
+  });
   root.querySelectorAll('.gal figure').forEach(f=>
     f.onclick=()=>openBox(+f.dataset.i));
   root.querySelectorAll('.essay').forEach(a=>

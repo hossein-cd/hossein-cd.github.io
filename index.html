@@ -2,40 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#241f1d">
-<title>Choose a shell — Hossein Soroushpour</title>
+<title>Hossein Soroushpour</title>
+<meta name="description" content="Digital marketing, content and political philosophy — posters, video and writing by Hossein Soroushpour.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="app.css">
 <style>
-body{overflow:auto;display:grid;place-items:center;padding:12vh 6vw 14vh;min-height:100dvh}
-.wrap{position:relative;z-index:5;width:min(680px,100%)}
-h1{font-size:clamp(28px,5vw,44px);font-weight:200}
-.sub{margin-top:16px;font-size:14.5px;line-height:1.9;opacity:.6}
-[dir=rtl] .sub{line-height:2.2}
-.opts{margin-top:46px;border-top:1px solid var(--line)}
-.opt{display:block;text-decoration:none;color:var(--ink);padding:26px 4px;
-  border-bottom:1px solid var(--line);transition:.35s}
-.opt:hover{padding-inline-start:16px;background:rgba(217,164,65,.07)}
-.opt strong{font-weight:300;font-size:20px}
-.opt em{display:block;font-style:normal;font-size:13.5px;opacity:.55;margin-top:9px;line-height:1.75}
-.note{margin-top:44px;font-size:12.5px;line-height:2;opacity:.45}
-.note code{font-family:ui-monospace,monospace;font-size:12px;opacity:.85}
+/* ---------- the field: one thin repeating figure, nothing more ---------- */
+#pat{position:fixed;inset:-8%;width:116%;height:116%;z-index:1;opacity:.16;pointer-events:none;
+  transition:opacity .9s,transform 1.2s var(--ease)}
+#pat g{stroke:var(--accent)}
+body.open #pat{opacity:.06;transform:scale(1.1) rotate(2deg)}
+
+header{position:fixed;top:0;inset-inline:0;z-index:30;display:flex;justify-content:center;
+  padding:26px 20px;transition:opacity .45s}
+header span{font-size:11px;letter-spacing:.3em;opacity:.6}
+[dir=rtl] header span{letter-spacing:.12em}
+body.open header{opacity:0;pointer-events:none}
+
+.home{position:relative;z-index:10;min-height:100dvh;display:grid;place-items:center;
+  padding:96px 5vw 104px;transition:opacity .5s,transform .8s var(--ease)}
+body.open .home{opacity:0;transform:scale(.96);pointer-events:none}
+.hero{text-align:center;max-width:min(940px,92vw)}
+.hero .who{font-size:12px;letter-spacing:.24em;opacity:.45;margin-bottom:22px}
+[dir=rtl] .hero .who{letter-spacing:.08em}
+.hero h1{font-size:clamp(29px,5.4vw,60px);font-weight:200}
+.hero h1 b{font-weight:200;opacity:.5;display:block}
+.hero p{margin-top:20px;font-size:14px;opacity:.55;line-height:1.85;max-width:46ch;margin-inline:auto}
+
+/* ---------- four tiles ---------- */
+.tiles{display:flex;justify-content:center;gap:clamp(10px,1.6vw,20px);margin-top:clamp(40px,7vh,72px);flex-wrap:wrap}
+.tile{position:relative;width:clamp(128px,15vw,164px);aspect-ratio:1;cursor:pointer;
+  display:grid;place-items:center;background:none;border:none;padding:0;
+  transition:transform .5s var(--ease)}
+.tile svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.tile .a{fill:none;stroke:var(--line);stroke-width:1;transition:stroke .45s,transform .8s var(--ease);
+  transform-origin:50% 50%}
+.tile .b{fill:none;stroke:transparent;stroke-width:1;transition:stroke .45s,transform 1s var(--ease);
+  transform-origin:50% 50%}
+.tile:hover,.tile:focus-visible{transform:translateY(-7px);outline:none}
+.tile:hover .a,.tile:focus-visible .a{stroke:var(--line-hi);transform:rotate(45deg)}
+.tile:hover .b,.tile:focus-visible .b{stroke:var(--accent);stroke-opacity:.5;transform:rotate(-45deg)}
+.tile em{position:absolute;top:10px;inset-inline-start:12px;font-style:normal;font-size:11px;opacity:.35}
+.tile span{position:relative;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;
+  text-align:center;line-height:1.5;transition:opacity .4s;padding:0 12px;color:var(--ink)}
+[dir=rtl] .tile span{letter-spacing:.04em;text-transform:none;font-size:15px}
+.tile:hover span{opacity:1}
+
+/* ---------- the chamber ---------- */
+.chamber{position:fixed;inset:0;z-index:25;visibility:hidden;
+  background:var(--panel)}
+body.open .chamber{visibility:visible}
+.frame{position:absolute;inset:clamp(14px,3vh,46px) clamp(14px,3vw,46px);pointer-events:none}
+.frame rect{fill:none;stroke:var(--accent);stroke-width:1;stroke-dasharray:400;stroke-dashoffset:400;opacity:.6;
+  vector-effect:non-scaling-stroke}
+body.open .frame rect{animation:draw 1.4s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.inner{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:clamp(74px,12vh,132px) clamp(24px,6vw,72px) clamp(96px,14vh,140px);
+  opacity:0;transform:translateY(18px);transition:opacity .55s .4s,transform .7s .4s}
+body.open .inner{opacity:1;transform:none}
+
+@media(max-width:620px){
+  .tile{width:calc(50% - 8px);aspect-ratio:1.35}
+  .tile span{font-size:11px;letter-spacing:.1em}
+  [dir=rtl] .tile span{font-size:13.5px}
+}
 </style>
 </head>
 <body>
-<div class="sky"></div><div class="grain"></div>
-<div class="wrap">
-  <h1>Two shells, one site.</h1>
-  <p class="sub">Same content, same palette, same typeface — only the way a section opens is different. Open both, pick one, and that one becomes the site.</p>
-  <div class="opts">
-    <a class="opt" href="athens.html"><strong>The Colonnade</strong>
-      <em>A lit vault in one-point perspective. Four arches on a plinth; the one you click grows from where it stands until you are inside it.</em></a>
-    <a class="opt" href="girih.html"><strong>Girih</strong>
-      <em>Four thin geometric tiles that counter-rotate on hover. Clicking draws a gold frame around the room and settles the content inside.</em></a>
-  </div>
-  <p class="note">To ship: copy the one you picked over this file —
-    <code>cp athens.html index.html</code> — and this chooser disappears.</p>
+<div class="sky"></div>
+<svg id="pat" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <pattern id="g" width="128" height="128" patternUnits="userSpaceOnUse">
+    <g fill="none" stroke-width=".8">
+      <rect x="22" y="22" width="84" height="84"/>
+      <rect x="22" y="22" width="84" height="84" transform="rotate(45 64 64)"/>
+      <circle cx="64" cy="64" r="42" stroke-opacity=".5"/>
+    </g></pattern></defs>
+  <rect width="100%" height="100%" fill="url(#g)"/></svg>
+<div class="grain"></div>
+
+<header><span id="who"></span></header>
+<button class="shut" id="shutb" type="button">close</button>
+
+<main class="home"><div class="hero">
+  <div class="who" id="role"></div>
+  <h1 id="h1"></h1>
+  <p id="hsub"></p>
+  <div class="tiles" id="tiles"></div>
+</div></main>
+
+<div class="chamber">
+  <svg class="frame" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true">
+    <rect x=".5" y=".5" width="99" height="99"/></svg>
+  <div class="inner" id="inner"></div>
 </div>
+
+<div class="pal" id="pal" dir="ltr"></div>
+
+<div class="lang">
+  <button class="on" data-l="en" type="button">EN</button><i></i>
+  <button class="fa" data-l="fa" type="button">فارسی</button>
+</div>
+
+<script src="data.js"></script>
+<script src="ui.js"></script>
+<script>
+const STAR=`<svg viewBox="0 0 100 100" aria-hidden="true"><g>
+  <rect class="a" x="18" y="18" width="64" height="64"/>
+  <rect class="b" x="18" y="18" width="64" height="64" transform="rotate(45 50 50)"/></g></svg>`;
+let lang='en',current=null;
+const $=id=>document.getElementById(id);
+
+/* ---------- palette ---------- */
+function setPal(id){
+  document.documentElement.dataset.pal=id;
+  try{localStorage.setItem('pal',id)}catch(e){}
+  document.querySelectorAll('.pal button').forEach(b=>b.classList.toggle('on',b.dataset.p===id));
+}
+(function palette(){
+  let saved=null;try{saved=localStorage.getItem('pal')}catch(e){}
+  const locked=DATA.PALETTE;
+  setPal(locked||saved||DATA.palettes[0].id);
+  if(locked){$('pal').remove();return}
+  $('pal').innerHTML=DATA.palettes.map(p=>
+    `<button data-p="${p.id}" type="button" title="${p.t.en}"
+       style="background:${p.dot}"></button>`).join('');
+  $('pal').querySelectorAll('button').forEach(b=>b.onclick=()=>setPal(b.dataset.p));
+  setPal(document.documentElement.dataset.pal);
+})();
+
+function render(){
+  const rtl=lang==='fa';
+  document.documentElement.lang=lang;document.documentElement.dir=rtl?'rtl':'ltr';
+  document.body.dir=rtl?'rtl':'ltr';
+  UI.lang=lang;UI.stopAll();UI.closeOverlays();
+  $('who').textContent=DATA.meta.name[lang];
+  $('role').textContent=DATA.meta.role[lang];
+  $('h1').innerHTML=DATA.meta.hero[lang].map((l,i)=>i?`<b>${l}</b>`:l).join('');
+  $('hsub').textContent=DATA.meta.heroSub[lang];
+  $('shutb').textContent=DATA.ui.close[lang];
+  $('tiles').innerHTML=DATA.order.map(k=>{const d=DATA[k];
+    return `<button class="tile" data-k="${k}" type="button">
+      <em>${d.num}</em>${STAR}<span>${d.title[lang]}</span></button>`;}).join('');
+  document.querySelectorAll('.tile').forEach(el=>el.onclick=()=>open_(el.dataset.k));
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));
+  if(current)fill(current);
+}
+function fill(k){const inn=$('inner');inn.innerHTML=UI.section(k);UI.bind(inn);inn.scrollTop=0}
+function open_(k){
+  current=k;fill(k);
+  document.body.classList.remove('open');void document.body.offsetWidth;
+  document.body.classList.add('open');
+}
+function shut(){current=null;UI.stopAll();UI.closeOverlays();document.body.classList.remove('open')}
+$('shutb').onclick=shut;
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&document.body.classList.contains('open')&&
+     !document.querySelector('.reader.on,.box.on')) shut();
+});
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.l;render()});
+render();
+</script>
 </body>
 </html>

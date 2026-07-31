@@ -39,11 +39,12 @@ me:{
        ['ارشد فلسفه سیاسی، دانشگاه تهران','۱۴۰۴ — تا الان'],
        ['کارشناسی علوم سیاسی، دانشگاه تهران','۱۳۹۹ — ۱۴۰۴']]
   },
-  /* edit these two lines and nothing else to change where people reach you */
+  fig:'assets/fig/me.png',
+  /* edit these lines and nothing else to change where people reach you */
   links:[
    {label:{en:'Telegram', fa:'تلگرام'}, href:'https://t.me/Hosseincd', at:'@Hosseincd'},
-   {label:{en:'Instagram',fa:'اینستاگرام'}, href:'#', at:'@Hosseincd'},
-   {label:{en:'LinkedIn', fa:'لینکدین'}, href:'#', at:'in/hosseincd'},
+   {label:{en:'Phone',    fa:'تلفن'}, href:'tel:+989120212076', at:'+98 912 021 2076'},
+   {label:{en:'LinkedIn', fa:'لینکدین'}, href:'https://www.linkedin.com/in/hossein-sorosh-68a83a349/', at:'hossein-sorosh'},
    {label:{en:'Email',    fa:'ایمیل'}, href:'mailto:', at:'—'}
   ]
 },
@@ -54,20 +55,30 @@ images:{
   title:{en:'Images', fa:'تصویر'},
   lead:{en:'Posters, key visuals and campaign frames. Every one drawn, set and finished by me.',
         fa:'پوستر، تصویر کلیدی و فریم‌های کمپین. همه را خودم طراحی، حروف‌چینی و تکمیل کرده‌ام.'},
+  fig:'assets/fig/images.png',
+  /* SAMPLE CATEGORIES — rename them, add more, or change which one each
+     image belongs to via its `c` field. `all` is generated automatically. */
+  cats:[
+   {id:'poster',   t:{en:'Posters',       fa:'پوستر'}},
+   {id:'social',   t:{en:'Social',        fa:'سوشال'}},
+   {id:'campaign', t:{en:'Campaigns',     fa:'کمپین'}},
+   {id:'brand',    t:{en:'Brand',         fa:'برند'}},
+   {id:'photo',    t:{en:'Photography',   fa:'عکاسی'}}
+  ],
   items:[
-   {src:'assets/img/23.jpg',  t:{en:'No algorithm exists', fa:'هیچ الگوریتمی وجود ندارد'}},
-   {src:'assets/img/kant.jpg',t:{en:'Messi or Yamal, according to Kant', fa:'مسی یا یامال از نظر کانت'}},
-   {src:'assets/img/20.1.jpg',t:{en:'Never trade again', fa:'دیگه هیچ‌وقت ترید نکن'}},
-   {src:'assets/img/54.jpg',  t:{en:'The magic formula', fa:'فرمول جادویی ترید'}},
-   {src:'assets/img/22.jpg',  t:{en:'If you are waiting for a miracle', fa:'اگر دنبال معجزه هستید'}},
-   {src:'assets/img/24.jpg',  t:{en:'The market', fa:'بازار'}},
-   {src:'assets/img/coinonia.jpg',t:{en:'Coinonia', fa:'کوینونیا'}},
-   {src:'assets/img/24.1.jpg',t:{en:'What is a bull trap?', fa:'تله گاوی چیه؟'}},
-   {src:'assets/img/51.jpg',  t:{en:'Three films for traders', fa:'۳ فیلم مخصوص تریدرها'}},
-   {src:'assets/img/14.2.jpg',t:{en:'Before the trade', fa:'قبل از معامله'}},
-   {src:'assets/img/50.jpg',  t:{en:'90% off', fa:'۹۰٪ تخفیف ویژه'}},
-   {src:'assets/img/3.jpg',   t:{en:'The mirror shows you plainly', fa:'آینه چون نقش تو بنمود راست'}},
-   {src:'assets/img/4.jpg',   t:{en:'Hiva Ex traders', fa:'تریدرهای انس هیوا اکس'}}
+   {c:'poster',  src:'assets/img/23.jpg',  t:{en:'No algorithm exists', fa:'هیچ الگوریتمی وجود ندارد'}},
+   {c:'social',  src:'assets/img/kant.jpg',t:{en:'Messi or Yamal, according to Kant', fa:'مسی یا یامال از نظر کانت'}},
+   {c:'poster',  src:'assets/img/20.1.jpg',t:{en:'Never trade again', fa:'دیگه هیچ‌وقت ترید نکن'}},
+   {c:'social',  src:'assets/img/54.jpg',  t:{en:'The magic formula', fa:'فرمول جادویی ترید'}},
+   {c:'poster',  src:'assets/img/22.jpg',  t:{en:'If you are waiting for a miracle', fa:'اگر دنبال معجزه هستید'}},
+   {c:'poster',  src:'assets/img/24.jpg',  t:{en:'The market', fa:'بازار'}},
+   {c:'brand',   src:'assets/img/coinonia.jpg',t:{en:'Coinonia', fa:'کوینونیا'}},
+   {c:'social',  src:'assets/img/24.1.jpg',t:{en:'What is a bull trap?', fa:'تله گاوی چیه؟'}},
+   {c:'social',  src:'assets/img/51.jpg',  t:{en:'Three films for traders', fa:'۳ فیلم مخصوص تریدرها'}},
+   {c:'poster',  src:'assets/img/14.2.jpg',t:{en:'Before the trade', fa:'قبل از معامله'}},
+   {c:'campaign',src:'assets/img/50.jpg',  t:{en:'90% off', fa:'۹۰٪ تخفیف ویژه'}},
+   {c:'photo',   src:'assets/img/3.jpg',   t:{en:'The mirror shows you plainly', fa:'آینه چون نقش تو بنمود راست'}},
+   {c:'photo',   src:'assets/img/4.jpg',   t:{en:'Hiva Ex traders', fa:'تریدرهای انس هیوا اکس'}}
   ]
 },
 
@@ -77,6 +88,7 @@ video:{
   title:{en:'Video', fa:'ویدیو'},
   lead:{en:'Shot, cut, captioned and scored by me. Tap one — the rest go quiet.',
         fa:'تصویربرداری، تدوین، زیرنویس و صدا، همه به‌دست خودم. یکی را بزن — بقیه ساکت می‌شوند.'},
+  fig:'assets/fig/video.png',
   items:[
    {src:'assets/video/2.mp4', poster:'assets/video/2.jpg',
     t:{en:'The best time to trade', fa:'بهترین زمان برای معامله'}},
@@ -97,6 +109,7 @@ writing:{
   title:{en:'Writing', fa:'متن'},
   lead:{en:'Longer pieces. The reader strips the page down to one column — start anywhere.',
         fa:'متن‌های بلندتر. صفحه‌ی خواندن همه‌چیز را جز یک ستون حذف می‌کند — از هرجا شروع کن.'},
+  fig:'assets/fig/writing.png',
   items:[
    {mins:9,
     t:{en:'Placeholder — replace with your first essay', fa:'جای‌گذار — اولین متن خودت را اینجا بگذار'},
@@ -129,8 +142,20 @@ ui:{
   min:{en:'min read', fa:'دقیقه مطالعه'},
   back:{en:'back to writing', fa:'بازگشت به متن‌ها'},
   play:{en:'play', fa:'پخش'},
-  of:{en:'of', fa:'از'}
-}
+  of:{en:'of', fa:'از'},
+  all:{en:'All', fa:'همه'}
+},
+
+/* Palette options. Pick one, then set PALETTE below to lock it in and the
+   swatch picker disappears. Colours themselves live in app.css. */
+palettes:[
+  {id:'athens',    t:{en:'Athens',    fa:'آتن'},      dot:'#d9a441'},
+  {id:'ink',       t:{en:'Ink',       fa:'مرکب'},     dot:'#ffffff'},
+  {id:'lapis',     t:{en:'Lapis',     fa:'لاجورد'},   dot:'#5b9bd5'},
+  {id:'ochre',     t:{en:'Ochre',     fa:'اخرا'},     dot:'#e0a12a'},
+  {id:'verdigris', t:{en:'Verdigris', fa:'زنگار'},    dot:'#4f7a63'}
+],
+PALETTE:null   /* e.g. 'ochre' to lock it and hide the picker */
 };
 
 DATA.order = ['me','images','video','writing'];

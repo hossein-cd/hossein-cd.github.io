@@ -3,42 +3,84 @@
    one ink colour. Elements stay minimal: hairlines, arcs, space.
    ============================================================ */
 :root{
-  /* pigments lifted from the painting */
-  --gold:#d9a441;      /* the light falling through the vault */
-  --terra:#a8442a;     /* Plato's robe */
-  --lapis:#2e5a7a;     /* Aristotle's blue */
-  --sky:#6e9bae;       /* the sky in the arch */
-  --sage:#7c8b5e;      /* the olive of the foreground figures */
-  --marble:#e8dcc6;    /* the stone */
-
-  /* one ink colour for every piece of type on the site */
-  --ink:#efe6d6;
-  --line:rgba(239,230,214,.16);
-  --line-hi:rgba(239,230,214,.34);
-  --pane:rgba(239,230,214,.045);
-  --pane-hi:rgba(239,230,214,.085);
-
   --font:'Vazirmatn',system-ui,-apple-system,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* ============================================================
+   PALETTES — each is two main colours over a dark ground.
+   Switch with <html data-pal="…">. One ink colour per palette;
+   hierarchy always comes from opacity, never a second text colour.
+   ============================================================ */
+
+/* 1 · ATHENS — the painting: gold light, terracotta, lapis */
+[data-pal=athens]{
+  --ink:#efe6d6; --accent:#d9a441; --accent-2:#a8442a;
+  --g-top:rgba(217,164,65,.42); --g-bl:rgba(168,68,42,.34);
+  --g-br:rgba(46,90,122,.40);   --g-x:rgba(124,139,94,.14);
+  --g-base:linear-gradient(168deg,#332b26 0%,#2a2422 44%,#231f22 74%,#1e1b1f 100%);
+  --panel:linear-gradient(178deg,rgba(46,40,37,.96),rgba(33,30,32,.98));
+  --read-bg:#211d1c;
+  --line:rgba(239,230,214,.16); --line-hi:rgba(239,230,214,.34);
+}
+/* 2 · INK — black ground, white elements, maximum clarity */
+[data-pal=ink]{
+  --ink:#ffffff; --accent:#ffffff; --accent-2:#9aa0a6;
+  --g-top:rgba(255,255,255,.10); --g-bl:rgba(255,255,255,.05);
+  --g-br:rgba(255,255,255,.07);  --g-x:transparent;
+  --g-base:linear-gradient(168deg,#161618 0%,#101012 52%,#08080a 100%);
+  --panel:linear-gradient(178deg,rgba(22,22,24,.97),rgba(11,11,13,.99));
+  --read-bg:#101012;
+  --line:rgba(255,255,255,.22); --line-hi:rgba(255,255,255,.46);
+}
+/* 3 · LAPIS — black and blue */
+[data-pal=lapis]{
+  --ink:#eaf1f8; --accent:#5b9bd5; --accent-2:#2f6fa8;
+  --g-top:rgba(91,155,213,.32); --g-bl:rgba(24,44,74,.60);
+  --g-br:rgba(91,155,213,.22);  --g-x:rgba(47,111,168,.16);
+  --g-base:linear-gradient(168deg,#0e1622 0%,#0a1018 52%,#06080d 100%);
+  --panel:linear-gradient(178deg,rgba(15,24,36,.97),rgba(8,12,19,.99));
+  --read-bg:#0c121c;
+  --line:rgba(234,241,248,.20); --line-hi:rgba(234,241,248,.40);
+}
+/* 4 · OCHRE — mustard and burnt sienna, straight off his own posters */
+[data-pal=ochre]{
+  --ink:#f6ecd8; --accent:#e0a12a; --accent-2:#b4552f;
+  --g-top:rgba(224,161,42,.44); --g-bl:rgba(180,85,47,.40);
+  --g-br:rgba(224,161,42,.20);  --g-x:rgba(180,85,47,.14);
+  --g-base:linear-gradient(168deg,#261c14 0%,#1e1710 52%,#150f0b 100%);
+  --panel:linear-gradient(178deg,rgba(40,30,21,.97),rgba(27,20,14,.99));
+  --read-bg:#1d160f;
+  --line:rgba(246,236,216,.18); --line-hi:rgba(246,236,216,.36);
+}
+/* 5 · VERDIGRIS — the Coinonia green with old gold */
+[data-pal=verdigris]{
+  --ink:#e9e3d2; --accent:#c9a227; --accent-2:#4f7a63;
+  --g-top:rgba(201,162,39,.28); --g-bl:rgba(79,122,99,.40);
+  --g-br:rgba(201,162,39,.16);  --g-x:rgba(79,122,99,.18);
+  --g-base:linear-gradient(168deg,#132119 0%,#0e1813 52%,#0a110e 100%);
+  --panel:linear-gradient(178deg,rgba(21,35,27,.97),rgba(13,22,18,.99));
+  --read-bg:#111d17;
+  --line:rgba(233,227,210,.18); --line-hi:rgba(233,227,210,.36);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 html,body{min-height:100%}
 body{
   font-family:var(--font);font-weight:300;color:var(--ink);
-  background:#241f1d;
+  background:var(--read-bg,#161618);
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
 }
-/* the painting's colour distribution: gold overhead, terracotta low-left,
-   lapis low-right, everything settling into warm shadow */
+/* the painting's colour distribution, driven entirely by the palette:
+   light overhead, warm mass low-left, cool mass low-right */
 .sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  transition:background .6s;
   background:
-    radial-gradient(ellipse 88% 58% at 50% -8%, rgba(217,164,65,.42), transparent 64%),
-    radial-gradient(ellipse 62% 58% at 6% 100%, rgba(168,68,42,.34), transparent 66%),
-    radial-gradient(ellipse 64% 58% at 96% 94%, rgba(46,90,122,.40), transparent 66%),
-    radial-gradient(ellipse 46% 38% at 80% 6%, rgba(110,155,174,.22), transparent 62%),
-    radial-gradient(ellipse 44% 36% at 16% 22%, rgba(124,139,94,.14), transparent 62%),
-    linear-gradient(168deg,#332b26 0%,#2a2422 44%,#231f22 74%,#1e1b1f 100%);}
+    radial-gradient(ellipse 88% 58% at 50% -8%, var(--g-top), transparent 64%),
+    radial-gradient(ellipse 62% 58% at 6% 100%, var(--g-bl), transparent 66%),
+    radial-gradient(ellipse 64% 58% at 96% 94%, var(--g-br), transparent 66%),
+    radial-gradient(ellipse 44% 36% at 16% 22%, var(--g-x), transparent 62%),
+    var(--g-base);}
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>")}
 
@@ -65,20 +107,50 @@ p.body{font-size:15px;line-height:1.95;opacity:.66;max-width:58ch}
 
 /* ---------- close ---------- */
 .shut{position:fixed;top:18px;inset-inline-start:18px;z-index:70;
-  background:rgba(28,25,26,.72);backdrop-filter:blur(8px);
+  background:rgba(0,0,0,.5);backdrop-filter:blur(8px);
   border:1px solid var(--line-hi);color:var(--ink);opacity:.72;
   font-family:var(--font);font-size:11px;letter-spacing:.18em;
   cursor:pointer;padding:11px 18px;border-radius:2px;transition:.3s;display:none}
-.shut:hover{opacity:1;border-color:var(--gold)}
+.shut:hover{opacity:1;border-color:var(--accent)}
 body.open .shut{display:block}
 
 /* ============================================================
    SECTION BODIES — identical in both shells
    ============================================================ */
 .sec{max-width:1060px;margin:0 auto;width:100%}
-.sec-head{margin-bottom:clamp(28px,5vh,52px)}
+.sec-head{margin-bottom:clamp(28px,5vh,52px);
+  display:grid;grid-template-columns:1fr auto;gap:clamp(18px,4vw,48px);align-items:center}
 .sec-head h2{font-size:clamp(30px,5.2vw,54px);margin:12px 0 18px}
-.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);opacity:.55;margin:26px 0}
+
+/* the painted figure that sits with each section head */
+.sec-fig{width:clamp(120px,17vw,208px);flex:none;align-self:center}
+.sec-fig img{display:block;width:100%;height:auto;
+  filter:drop-shadow(0 16px 26px rgba(0,0,0,.5))}
+/* the monochrome palettes take the colour out of the figures instead of
+   fighting them; the warm palettes leave them alone */
+[data-pal=ink] .sec-fig img{filter:grayscale(1) contrast(1.06) drop-shadow(0 16px 26px rgba(0,0,0,.6))}
+[data-pal=lapis] .sec-fig img{filter:saturate(.32) brightness(.96) drop-shadow(0 16px 26px rgba(0,0,0,.6))}
+[data-pal=verdigris] .sec-fig img{filter:saturate(.72) drop-shadow(0 16px 26px rgba(0,0,0,.5))}
+
+/* category chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{background:none;border:1px solid var(--line);color:var(--ink);opacity:.55;
+  font-family:var(--font);font-size:12px;letter-spacing:.1em;cursor:pointer;
+  padding:9px 16px;border-radius:999px;transition:.3s}
+.chip:hover{opacity:.85;border-color:var(--line-hi)}
+.chip.on{opacity:1;border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 13%,transparent)}
+.chip b{font-weight:300;opacity:.5;margin-inline-start:7px;font-size:11px}
+
+/* palette picker — temporary, disappears once DATA.PALETTE is set */
+.pal{position:fixed;top:16px;inset-inline-end:16px;z-index:96;display:flex;gap:7px;
+  padding:8px 10px;border:1px solid var(--line);border-radius:999px;
+  background:rgba(0,0,0,.42);backdrop-filter:blur(8px)}
+.pal button{width:16px;height:16px;border-radius:50%;cursor:pointer;padding:0;
+  border:1px solid rgba(255,255,255,.35);opacity:.55;transition:.25s}
+.pal button:hover{opacity:.9;transform:scale(1.12)}
+.pal button.on{opacity:1;box-shadow:0 0 0 2px var(--ink)}
+.rule{height:1px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.55;margin:26px 0}
 
 /* --- I · me --- */
 .me-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:start}
@@ -87,26 +159,29 @@ body.open .shut{display:block}
   border-bottom:1px solid var(--line);font-size:13.5px;opacity:.74}
 .fact em{font-style:normal;opacity:.6;white-space:nowrap;font-size:12px}
 .links{display:grid;gap:1px;margin-top:30px;background:var(--line);border:1px solid var(--line)}
-.link{background:rgba(36,31,29,.6);padding:16px 18px;display:flex;justify-content:space-between;
+.link{background:rgba(0,0,0,.22);padding:16px 18px;display:flex;justify-content:space-between;
   gap:14px;font-size:14px;text-decoration:none;color:var(--ink);opacity:.78;transition:.3s}
-.link:hover{opacity:1;background:rgba(217,164,65,.10)}
+.link:hover{opacity:1;background:color-mix(in srgb,var(--accent) 14%,transparent)}
 .link span:last-child{opacity:.55;font-size:12.5px}
 
 /* --- II · images: masonry, mixed ratios --- */
 .gal{columns:3;column-gap:14px}
 .gal figure{break-inside:avoid;margin-bottom:14px;cursor:pointer;position:relative;
   border:1px solid var(--line);overflow:hidden;transition:border-color .35s,transform .5s var(--ease)}
-.gal figure:hover{border-color:var(--gold);transform:translateY(-4px)}
+.gal figure:hover{border-color:var(--accent);transform:translateY(-4px)}
 .gal img{display:block;width:100%;height:auto}
 .gal figcaption{position:absolute;inset-inline:0;bottom:0;padding:26px 14px 12px;font-size:12px;
-  background:linear-gradient(transparent,rgba(20,17,16,.9));opacity:0;transition:opacity .35s}
+  background:linear-gradient(transparent,rgba(0,0,0,.9));opacity:0;transition:opacity .35s}
 .gal figure:hover figcaption{opacity:1}
 
 /* lightbox */
-.box{position:fixed;inset:0;z-index:90;background:rgba(20,17,16,.94);backdrop-filter:blur(10px);
-  display:none;place-items:center;padding:64px 5vw 92px}
-.box.on{display:grid}
-.box img{max-width:100%;max-height:100%;object-fit:contain;border:1px solid var(--line-hi)}
+/* flex, not grid: a percentage max-height only resolves against a definite
+   height, which an auto grid row is not — that is what was cropping images */
+.box{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.93);backdrop-filter:blur(10px);
+  display:none;align-items:center;justify-content:center;padding:64px 5vw 92px}
+.box.on{display:flex}
+.box img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
+  border:1px solid var(--line-hi)}
 .box .cap{position:fixed;bottom:60px;inset-inline:0;text-align:center;font-size:13px;opacity:.7}
 .box .nav{position:fixed;top:50%;transform:translateY(-50%);background:none;border:none;
   color:var(--ink);opacity:.45;font-size:30px;cursor:pointer;padding:20px;transition:opacity .3s}
@@ -116,14 +191,14 @@ body.open .shut{display:block}
 /* --- III · video: 9:16 --- */
 .vids{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .vid{position:relative;aspect-ratio:9/16;border:1px solid var(--line);overflow:hidden;
-  background:#1b1817;cursor:pointer;transition:border-color .35s,transform .5s var(--ease)}
-.vid:hover{border-color:var(--gold);transform:translateY(-4px)}
+  background:rgba(0,0,0,.3);cursor:pointer;transition:border-color .35s,transform .5s var(--ease)}
+.vid:hover{border-color:var(--accent);transform:translateY(-4px)}
 .vid video{width:100%;height:100%;object-fit:cover;display:block}
 .vid .tag{position:absolute;inset-inline:0;bottom:0;padding:34px 14px 14px;font-size:12.5px;
-  line-height:1.5;background:linear-gradient(transparent,rgba(20,17,16,.92));pointer-events:none}
+  line-height:1.5;background:linear-gradient(transparent,rgba(0,0,0,.92));pointer-events:none}
 .vid .cue{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;transition:opacity .3s}
 .vid .cue s{display:block;width:52px;height:52px;border:1px solid var(--line-hi);border-radius:50%;
-  position:relative;background:rgba(20,17,16,.4)}
+  position:relative;background:rgba(0,0,0,.45)}
 .vid .cue s::after{content:'';position:absolute;left:53%;top:50%;transform:translate(-50%,-50%);
   border-inline-start:9px solid var(--ink);border-top:6px solid transparent;border-bottom:6px solid transparent}
 [dir=rtl] .vid .cue s::after{transform:translate(-50%,-50%) scaleX(-1)}
@@ -134,7 +209,7 @@ body.open .shut{display:block}
 .essay{border-bottom:1px solid var(--line);padding:clamp(22px,3.2vw,34px) 4px;cursor:pointer;
   display:grid;grid-template-columns:auto 1fr auto;gap:clamp(16px,3vw,38px);align-items:baseline;
   transition:padding-inline-start .4s var(--ease),background .35s}
-.essay:hover{padding-inline-start:16px;background:rgba(217,164,65,.06)}
+.essay:hover{padding-inline-start:16px;background:color-mix(in srgb,var(--accent) 9%,transparent)}
 .essay .idx{font-size:12px;opacity:.4;width:22px}
 .essay h3{font-size:clamp(19px,2.6vw,26px);margin-bottom:12px}
 .essay .hook{font-size:15px;line-height:1.75;opacity:.6;max-width:62ch}
@@ -142,15 +217,15 @@ body.open .shut{display:block}
 .essay .mins{font-size:11.5px;letter-spacing:.14em;opacity:.45;white-space:nowrap}
 
 /* the reader: one column, nothing else */
-.reader{position:fixed;inset:0;z-index:92;background:#211d1c;overflow-y:auto;
+.reader{position:fixed;inset:0;z-index:92;background:var(--read-bg);overflow-y:auto;
   opacity:0;pointer-events:none;transition:opacity .45s}
 .reader.on{opacity:1;pointer-events:auto}
-.reader .bar{position:fixed;top:0;inset-inline-start:0;height:2px;width:0;background:var(--gold);z-index:3;
+.reader .bar{position:fixed;top:0;inset-inline-start:0;height:2px;width:0;background:var(--accent);z-index:3;
   transition:width .1s linear}
 .reader .col{max-width:660px;margin:0 auto;padding:clamp(88px,14vh,160px) 24px clamp(120px,20vh,220px)}
 .reader h2{font-size:clamp(28px,4.6vw,44px);margin:14px 0 26px}
 .reader .hook{font-size:clamp(18px,2.4vw,22px);line-height:1.75;opacity:.85;
-  padding-inline-start:18px;border-inline-start:2px solid var(--gold)}
+  padding-inline-start:18px;border-inline-start:2px solid var(--accent)}
 [dir=rtl] .reader .hook{line-height:2.1}
 .reader p.t{font-size:17px;line-height:2;opacity:0;transform:translateY(14px);
   transition:opacity .7s,transform .8s;margin-top:28px}
@@ -169,8 +244,13 @@ body.open .shut{display:block}
   .vids{grid-template-columns:repeat(2,1fr)}
   .me-grid{grid-template-columns:1fr;gap:34px}
 }
+@media(max-width:760px){
+  .sec-head{grid-template-columns:1fr;gap:6px}
+  .sec-fig{width:clamp(104px,30vw,152px);order:-1;justify-self:start;margin-bottom:4px}
+}
 @media(max-width:620px){
   .gal{columns:1}
+  .pal{top:auto;bottom:62px;inset-inline-end:auto;left:50%;transform:translateX(-50%)}
   .vids{grid-template-columns:1fr 1fr;gap:10px}
   .essay{grid-template-columns:auto 1fr;gap:14px}
   .essay .mins{grid-column:2;margin-top:10px}
