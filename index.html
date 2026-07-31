@@ -108,7 +108,8 @@ body.open .inner{opacity:1;transform:none}
   <button class="fa" data-l="fa" type="button">فارسی</button>
 </div>
 
-<script src="data.js"></script>
+<script src="content.js"></script>
+<script src="essays.js"></script>
 <script src="ui.js"></script>
 <script>
 const STAR=`<svg viewBox="0 0 100 100" aria-hidden="true"><g>
@@ -123,14 +124,16 @@ function render(){
   document.documentElement.lang=lang;document.documentElement.dir=rtl?'rtl':'ltr';
   document.body.dir=rtl?'rtl':'ltr';
   UI.lang=lang;UI.stopAll();UI.closeOverlays();
-  $('who').textContent=DATA.meta.name[lang];
-  $('role').textContent=DATA.meta.role[lang];
-  $('h1').innerHTML=DATA.meta.hero[lang].map((l,i)=>i?`<b>${l}</b>`:l).join('');
-  $('hsub').textContent=DATA.meta.heroSub[lang];
-  $('shutb').textContent=DATA.ui.close[lang];
+  const T=UI.t;
+  $('who').textContent=T(DATA.meta.name,'meta.name');
+  $('role').textContent=T(DATA.meta.role,'meta.role');
+  $('h1').innerHTML=(DATA.meta.hero[lang]||DATA.meta.hero.en)
+    .map((l,i)=>i?`<b>${l}</b>`:l).join('');
+  $('hsub').textContent=T(DATA.meta.heroSub,'meta.heroSub');
+  $('shutb').textContent=T(DATA.ui.close);
   $('tiles').innerHTML=DATA.order.map(k=>{const d=DATA[k];
     return `<button class="tile" data-k="${k}" type="button">
-      <em>${d.num}</em>${STAR}<span>${d.title[lang]}</span></button>`;}).join('');
+      <em>${d.num}</em>${STAR}<span>${T(d.title,k)}</span></button>`;}).join('');
   document.querySelectorAll('.tile').forEach(el=>el.onclick=()=>open_(el.dataset.k));
   document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));
   if(current)fill(current);
