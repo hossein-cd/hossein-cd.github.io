@@ -137,7 +137,7 @@ video:{
   num:'III',
   title:{en:'Video', fa:'ویدیو'},
   lead:{en:'Shot, cut, captioned and scored by me. Tap one — the rest go quiet.',
-        fa:'تصویربرداری، تدوین، زیرنویس و صدا، همه به‌دست خودم. یکی را بزن — بقیه ساکت می‌شوند.'},
+        fa:'تصویربرداری، تدوین، زیرنویس و صدا، همه AIIII. یکی را بزن — بقیه ساکت می‌شوند.'},
   fig:'assets/fig/video.png',
 
   cats:[
