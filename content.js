@@ -78,7 +78,7 @@ me:{
    {label:{en:'Telegram', fa:'تلگرام'},  at:'@Hosseincd',        href:'https://t.me/Hosseincd'},
    {label:{en:'Phone',    fa:'تلفن'},    at:'+98 912 021 2076',  href:'tel:+989120212076'},
    {label:{en:'LinkedIn', fa:'لینکدین'}, at:'hossein-sorosh',    href:'https://www.linkedin.com/in/hossein-sorosh-68a83a349/'},
-   {label:{en:'Email',    fa:'ایمیل'},   at:'—',                 href:'mailto:'}
+   {label:{en:'Email',    fa:'ایمیل'},   at:'hosseinsoroshpoor@gmail.com',                 href:'mailto:'}
   ]
 },
 
