@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#241f1d">
+<meta name="theme-color" content="#0c121c">
 <title>Hossein Soroushpour</title>
 <meta name="description" content="Digital marketing, content and political philosophy — posters, video and writing by Hossein Soroushpour.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,15 +36,18 @@ body.open .home{opacity:0;transform:scale(.96);pointer-events:none}
 .tiles{display:flex;justify-content:center;gap:clamp(10px,1.6vw,20px);margin-top:clamp(40px,7vh,72px);flex-wrap:wrap}
 .tile{position:relative;width:clamp(128px,15vw,164px);aspect-ratio:1;cursor:pointer;
   display:grid;place-items:center;background:none;border:none;padding:0;
+  font-family:var(--font);color:var(--ink);   /* buttons do not inherit the family */
   transition:transform .5s var(--ease)}
 .tile svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.tile .a{fill:none;stroke:var(--line);stroke-width:1;transition:stroke .45s,transform .8s var(--ease);
-  transform-origin:50% 50%}
-.tile .b{fill:none;stroke:transparent;stroke-width:1;transition:stroke .45s,transform 1s var(--ease);
-  transform-origin:50% 50%}
+/* a square is symmetric every 90°, so the two must stay exactly 45° apart or
+   they land on top of each other instead of crossing into an eight-point star */
+.tile .a,.tile .b{fill:none;stroke-width:1.7;transform-origin:50% 50%;
+  transition:stroke .45s,stroke-opacity .45s,transform .8s var(--ease)}
+.tile .a{stroke:var(--line-hi);transform:rotate(0deg)}
+.tile .b{stroke:var(--accent);stroke-opacity:0;transform:rotate(45deg)}
 .tile:hover,.tile:focus-visible{transform:translateY(-7px);outline:none}
-.tile:hover .a,.tile:focus-visible .a{stroke:var(--line-hi);transform:rotate(45deg)}
-.tile:hover .b,.tile:focus-visible .b{stroke:var(--accent);stroke-opacity:.5;transform:rotate(-45deg)}
+.tile:hover .a,.tile:focus-visible .a{stroke:var(--accent);transform:rotate(22.5deg)}
+.tile:hover .b,.tile:focus-visible .b{stroke-opacity:.85;transform:rotate(67.5deg)}
 .tile em{position:absolute;top:10px;inset-inline-start:12px;font-style:normal;font-size:11px;opacity:.35}
 .tile span{position:relative;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;
   text-align:center;line-height:1.5;transition:opacity .4s;padding:0 12px;color:var(--ink)}
@@ -100,8 +103,6 @@ body.open .inner{opacity:1;transform:none}
   <div class="inner" id="inner"></div>
 </div>
 
-<div class="pal" id="pal" dir="ltr"></div>
-
 <div class="lang">
   <button class="on" data-l="en" type="button">EN</button><i></i>
   <button class="fa" data-l="fa" type="button">فارسی</button>
@@ -112,27 +113,10 @@ body.open .inner{opacity:1;transform:none}
 <script>
 const STAR=`<svg viewBox="0 0 100 100" aria-hidden="true"><g>
   <rect class="a" x="18" y="18" width="64" height="64"/>
-  <rect class="b" x="18" y="18" width="64" height="64" transform="rotate(45 50 50)"/></g></svg>`;
+  <rect class="b" x="18" y="18" width="64" height="64"/></g></svg>`;
 let lang='en',current=null;
 const $=id=>document.getElementById(id);
 
-/* ---------- palette ---------- */
-function setPal(id){
-  document.documentElement.dataset.pal=id;
-  try{localStorage.setItem('pal',id)}catch(e){}
-  document.querySelectorAll('.pal button').forEach(b=>b.classList.toggle('on',b.dataset.p===id));
-}
-(function palette(){
-  let saved=null;try{saved=localStorage.getItem('pal')}catch(e){}
-  const locked=DATA.PALETTE;
-  setPal(locked||saved||DATA.palettes[0].id);
-  if(locked){$('pal').remove();return}
-  $('pal').innerHTML=DATA.palettes.map(p=>
-    `<button data-p="${p.id}" type="button" title="${p.t.en}"
-       style="background:${p.dot}"></button>`).join('');
-  $('pal').querySelectorAll('button').forEach(b=>b.onclick=()=>setPal(b.dataset.p));
-  setPal(document.documentElement.dataset.pal);
-})();
 
 function render(){
   const rtl=lang==='fa';

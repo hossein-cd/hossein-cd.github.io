@@ -1,4 +1,4 @@
-/* Single source of content for both shells (athens.html, girih.html).
+/* Single source of content for the site.
    Everything the site says lives here. Edit this file, not the HTML. */
 
 const DATA = {
@@ -146,16 +146,6 @@ ui:{
   all:{en:'All', fa:'همه'}
 },
 
-/* Palette options. Pick one, then set PALETTE below to lock it in and the
-   swatch picker disappears. Colours themselves live in app.css. */
-palettes:[
-  {id:'athens',    t:{en:'Athens',    fa:'آتن'},      dot:'#d9a441'},
-  {id:'ink',       t:{en:'Ink',       fa:'مرکب'},     dot:'#ffffff'},
-  {id:'lapis',     t:{en:'Lapis',     fa:'لاجورد'},   dot:'#5b9bd5'},
-  {id:'ochre',     t:{en:'Ochre',     fa:'اخرا'},     dot:'#e0a12a'},
-  {id:'verdigris', t:{en:'Verdigris', fa:'زنگار'},    dot:'#4f7a63'}
-],
-PALETTE:null   /* e.g. 'ochre' to lock it and hide the picker */
 };
 
 DATA.order = ['me','images','video','writing'];

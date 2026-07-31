@@ -1,40 +1,11 @@
 /* ============================================================
-   Shared foundation — School of Athens palette, one typeface,
-   one ink colour. Elements stay minimal: hairlines, arcs, space.
+   Shared foundation. One typeface, one ink colour, black-and-blue.
+   Elements stay minimal: hairlines, arcs, space.
    ============================================================ */
 :root{
   --font:'Vazirmatn',system-ui,-apple-system,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
-}
 
-/* ============================================================
-   PALETTES — each is two main colours over a dark ground.
-   Switch with <html data-pal="…">. One ink colour per palette;
-   hierarchy always comes from opacity, never a second text colour.
-   ============================================================ */
-
-/* 1 · ATHENS — the painting: gold light, terracotta, lapis */
-[data-pal=athens]{
-  --ink:#efe6d6; --accent:#d9a441; --accent-2:#a8442a;
-  --g-top:rgba(217,164,65,.42); --g-bl:rgba(168,68,42,.34);
-  --g-br:rgba(46,90,122,.40);   --g-x:rgba(124,139,94,.14);
-  --g-base:linear-gradient(168deg,#332b26 0%,#2a2422 44%,#231f22 74%,#1e1b1f 100%);
-  --panel:linear-gradient(178deg,rgba(46,40,37,.96),rgba(33,30,32,.98));
-  --read-bg:#211d1c;
-  --line:rgba(239,230,214,.16); --line-hi:rgba(239,230,214,.34);
-}
-/* 2 · INK — black ground, white elements, maximum clarity */
-[data-pal=ink]{
-  --ink:#ffffff; --accent:#ffffff; --accent-2:#9aa0a6;
-  --g-top:rgba(255,255,255,.10); --g-bl:rgba(255,255,255,.05);
-  --g-br:rgba(255,255,255,.07);  --g-x:transparent;
-  --g-base:linear-gradient(168deg,#161618 0%,#101012 52%,#08080a 100%);
-  --panel:linear-gradient(178deg,rgba(22,22,24,.97),rgba(11,11,13,.99));
-  --read-bg:#101012;
-  --line:rgba(255,255,255,.22); --line-hi:rgba(255,255,255,.46);
-}
-/* 3 · LAPIS — black and blue */
-[data-pal=lapis]{
   --ink:#eaf1f8; --accent:#5b9bd5; --accent-2:#2f6fa8;
   --g-top:rgba(91,155,213,.32); --g-bl:rgba(24,44,74,.60);
   --g-br:rgba(91,155,213,.22);  --g-x:rgba(47,111,168,.16);
@@ -42,26 +13,6 @@
   --panel:linear-gradient(178deg,rgba(15,24,36,.97),rgba(8,12,19,.99));
   --read-bg:#0c121c;
   --line:rgba(234,241,248,.20); --line-hi:rgba(234,241,248,.40);
-}
-/* 4 · OCHRE — mustard and burnt sienna, straight off his own posters */
-[data-pal=ochre]{
-  --ink:#f6ecd8; --accent:#e0a12a; --accent-2:#b4552f;
-  --g-top:rgba(224,161,42,.44); --g-bl:rgba(180,85,47,.40);
-  --g-br:rgba(224,161,42,.20);  --g-x:rgba(180,85,47,.14);
-  --g-base:linear-gradient(168deg,#261c14 0%,#1e1710 52%,#150f0b 100%);
-  --panel:linear-gradient(178deg,rgba(40,30,21,.97),rgba(27,20,14,.99));
-  --read-bg:#1d160f;
-  --line:rgba(246,236,216,.18); --line-hi:rgba(246,236,216,.36);
-}
-/* 5 · VERDIGRIS — the Coinonia green with old gold */
-[data-pal=verdigris]{
-  --ink:#e9e3d2; --accent:#c9a227; --accent-2:#4f7a63;
-  --g-top:rgba(201,162,39,.28); --g-bl:rgba(79,122,99,.40);
-  --g-br:rgba(201,162,39,.16);  --g-x:rgba(79,122,99,.18);
-  --g-base:linear-gradient(168deg,#132119 0%,#0e1813 52%,#0a110e 100%);
-  --panel:linear-gradient(178deg,rgba(21,35,27,.97),rgba(13,22,18,.99));
-  --read-bg:#111d17;
-  --line:rgba(233,227,210,.18); --line-hi:rgba(233,227,210,.36);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -124,13 +75,9 @@ body.open .shut{display:block}
 
 /* the painted figure that sits with each section head */
 .sec-fig{width:clamp(120px,17vw,208px);flex:none;align-self:center}
-.sec-fig img{display:block;width:100%;height:auto;
-  filter:drop-shadow(0 16px 26px rgba(0,0,0,.5))}
-/* the monochrome palettes take the colour out of the figures instead of
-   fighting them; the warm palettes leave them alone */
-[data-pal=ink] .sec-fig img{filter:grayscale(1) contrast(1.06) drop-shadow(0 16px 26px rgba(0,0,0,.6))}
-[data-pal=lapis] .sec-fig img{filter:saturate(.32) brightness(.96) drop-shadow(0 16px 26px rgba(0,0,0,.6))}
-[data-pal=verdigris] .sec-fig img{filter:saturate(.72) drop-shadow(0 16px 26px rgba(0,0,0,.5))}
+.sec-fig img{display:block;width:100%;height:auto}
+/* desaturated so the figures sit in the blue rather than fight it */
+.sec-fig img{filter:saturate(.38) brightness(.97) drop-shadow(0 16px 26px rgba(0,0,0,.6))}
 
 /* category chips */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
@@ -142,14 +89,6 @@ body.open .shut{display:block}
   background:color-mix(in srgb,var(--accent) 13%,transparent)}
 .chip b{font-weight:300;opacity:.5;margin-inline-start:7px;font-size:11px}
 
-/* palette picker — temporary, disappears once DATA.PALETTE is set */
-.pal{position:fixed;top:16px;inset-inline-end:16px;z-index:96;display:flex;gap:7px;
-  padding:8px 10px;border:1px solid var(--line);border-radius:999px;
-  background:rgba(0,0,0,.42);backdrop-filter:blur(8px)}
-.pal button{width:16px;height:16px;border-radius:50%;cursor:pointer;padding:0;
-  border:1px solid rgba(255,255,255,.35);opacity:.55;transition:.25s}
-.pal button:hover{opacity:.9;transform:scale(1.12)}
-.pal button.on{opacity:1;box-shadow:0 0 0 2px var(--ink)}
 .rule{height:1px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.55;margin:26px 0}
 
 /* --- I · me --- */
@@ -250,7 +189,6 @@ body.open .shut{display:block}
 }
 @media(max-width:620px){
   .gal{columns:1}
-  .pal{top:auto;bottom:62px;inset-inline-end:auto;left:50%;transform:translateX(-50%)}
   .vids{grid-template-columns:1fr 1fr;gap:10px}
   .essay{grid-template-columns:auto 1fr;gap:14px}
   .essay .mins{grid-column:2;margin-top:10px}
