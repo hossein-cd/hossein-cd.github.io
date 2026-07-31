@@ -119,14 +119,31 @@ first and fill it later without an empty button sitting there.
 
 ## Checking your work
 
+First, from the repo root:
+
+```bash
+node .claude/skills/site-content/scripts/check.js
+```
+
+It parses both content files and reports the mistakes that never throw an error
+on their own, so nobody notices them for a month: a `cat` that no chip declares
+(the item is silently never shown), a half-translated pair, a file referenced
+but not committed, and an essay whose two languages disagree on paragraph count
+— which nearly always means a blank line was lost in the paste. If it cannot
+parse the file at all, the cause is usually a missing comma between entries or
+an apostrophe inside a `'single-quoted'` string.
+
+Then look at it:
+
 ```bash
 python3 -m http.server -d . 8000   # then open http://localhost:8000
 ```
 
-Open the browser console: content problems announce themselves there. Then check
-**both languages** and **a narrow window** — Persian is right-to-left and the
-layout mirrors, which is where mistakes show up. Reload with cache disabled, or
-the browser will happily serve you the old `content.js`.
+Open the browser console: anything the checker cannot see announces itself
+there. Then check **both languages** and **a narrow window** — Persian is
+right-to-left and the layout mirrors, which is where mistakes show up. Reload
+with cache disabled, or the browser will happily serve you the old
+`content.js`.
 
 ## Design rules — do not quietly break these
 
