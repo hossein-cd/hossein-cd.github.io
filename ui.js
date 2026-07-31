@@ -1,20 +1,47 @@
-/* Section bodies + overlays, shared by athens.html and girih.html.
-   Shells own the way a section OPENS; this file owns what is inside it. */
+/* What is INSIDE a section. index.html owns how a section opens; this file
+   owns the gallery, the video grid, the essay list, the lightbox and the reader. */
 
 const UI = (() => {
 let lang='en';
 const t=(o)=>o[lang];
 
+/* which category each filterable section is showing */
+const sel={images:'all', video:'all', writing:'all'};
+
+/* ---------- shared category filter ---------- */
+function count(key,id){
+  const it=DATA[key].items;
+  return id==='all'?it.length:it.filter(x=>x.c===id).length;
+}
+/* shown() is the single source of truth for what a section is displaying, so
+   a filter and the lightbox can never disagree about which item index 3 is */
+function shown(key){
+  const c=sel[key];
+  return DATA[key].items.filter(x=>c==='all'||x.c===c);
+}
+function chips(key){
+  const d=DATA[key];
+  if(!d.cats||!d.cats.length)return '';
+  const cats=[{id:'all',t:DATA.ui.all},...d.cats].filter(c=>count(key,c.id));
+  if(!cats.some(c=>c.id===sel[key]))sel[key]='all';
+  return `<div class="chips">${cats.map(c=>
+    `<button class="chip${c.id===sel[key]?' on':''}" data-c="${c.id}" type="button">
+       ${t(c.t)}<b>${count(key,c.id)}</b></button>`).join('')}</div>`;
+}
+
 /* ---------- section HTML ---------- */
+const BODY={me,images,video,writing};
+
 function section(key){
   const d=DATA[key];
-  /* the figure removes itself if the file is not there yet */
+  /* the figure removes itself if the file is not there */
   const fig=d.fig?`<div class="sec-fig"><img src="${d.fig}" alt="" aria-hidden="true"
       onerror="this.closest('.sec-fig').remove()"></div>`:'';
   const head=`<div class="sec-head">
       <div><div class="eyebrow">${d.num} · ${t(d.title)}</div>
         <h2>${t(d.title)}</h2><p class="lead">${t(d.lead)}</p></div>${fig}</div>`;
-  return `<div class="sec">${head}${({me:me,images:images,video:video,writing:writing})[key]()}</div>`;
+  return `<div class="sec" data-k="${key}">${head}${chips(key)}
+      <div class="list">${BODY[key]()}</div></div>`;
 }
 
 function me(){
@@ -30,34 +57,20 @@ function me(){
     </div></div>`;
 }
 
-let cat='all';
-function count(id){return id==='all'?DATA.images.items.length
-  :DATA.images.items.filter(i=>i.c===id).length}
 function images(){
-  const cats=[{id:'all',t:DATA.ui.all},...DATA.images.cats].filter(c=>count(c.id));
-  if(!cats.some(c=>c.id===cat))cat='all';
-  return `<div class="chips">${cats.map(c=>
-      `<button class="chip${c.id===cat?' on':''}" data-c="${c.id}" type="button">
-         ${t(c.t)}<b>${count(c.id)}</b></button>`).join('')}</div>
-    <div class="gal">${gallery()}</div>`;
-}
-/* shown() is what the lightbox steps through, so filtering and the
-   lightbox can never disagree about which image index 3 is */
-function shown(){return DATA.images.items.filter(im=>cat==='all'||im.c===cat)}
-function gallery(){
-  return shown().map((im,i)=>
+  return `<div class="gal">${shown('images').map((im,i)=>
     `<figure data-i="${i}"><img src="${im.src}" alt="${t(im.t)}" loading="lazy">
-       <figcaption>${t(im.t)}</figcaption></figure>`).join('');
+       <figcaption>${t(im.t)}</figcaption></figure>`).join('')}</div>`;
 }
 
 function video(){
-  return `<div class="vids">${DATA.video.items.map(v=>
+  return `<div class="vids">${shown('video').map(v=>
     `<div class="vid"><video src="${v.src}" poster="${v.poster}" playsinline preload="none"></video>
        <div class="cue"><s></s></div><div class="tag">${t(v.t)}</div></div>`).join('')}</div>`;
 }
 
 function writing(){
-  return `<div class="essays">${DATA.writing.items.map((e,i)=>
+  return `<div class="essays">${shown('writing').map((e,i)=>
     `<article class="essay" data-i="${i}">
        <span class="idx">${String(i+1).padStart(2,'0')}</span>
        <div><h3>${t(e.t)}</h3><p class="hook">${t(e.lead)}</p></div>
@@ -93,7 +106,7 @@ function overlays(){
   });
 }
 function step(n){
-  const it=shown();if(!it.length)return;
+  const it=shown('images');if(!it.length)return;
   gi=(gi+n+it.length)%it.length;
   box.querySelector('img').src=it[gi].src;
   box.querySelector('.cap').textContent=`${t(it[gi].t)} — ${gi+1} ${t(DATA.ui.of)} ${it.length}`;
@@ -102,7 +115,7 @@ function openBox(i){overlays();gi=i;step(0);box.classList.add('on')}
 
 function openReader(i){
   overlays();
-  const e=DATA.writing.items[i];
+  const e=shown('writing')[i];
   reader.querySelector('.col').innerHTML=
     `<div class="eyebrow">${DATA.writing.num} · ${e.mins} ${t(DATA.ui.min)}</div>
      <h2>${t(e.t)}</h2><p class="hook">${t(e.lead)}</p>
@@ -117,11 +130,16 @@ function closeReader(){reader.classList.remove('on')}
 
 /* ---------- wire a freshly-rendered section ---------- */
 function bind(root){
+  const sec=root.querySelector('.sec'), key=sec&&sec.dataset.k;
+
   root.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
-    cat=c.dataset.c;
-    root.querySelectorAll('.chip').forEach(o=>o.classList.toggle('on',o.dataset.c===cat));
-    const g=root.querySelector('.gal');g.innerHTML=gallery();bind(root);
+    sel[key]=c.dataset.c;
+    stopAll();
+    root.querySelectorAll('.chip').forEach(o=>o.classList.toggle('on',o.dataset.c===sel[key]));
+    root.querySelector('.list').innerHTML=BODY[key]();
+    bind(root);
   });
+
   root.querySelectorAll('.gal figure').forEach(f=>
     f.onclick=()=>openBox(+f.dataset.i));
   root.querySelectorAll('.essay').forEach(a=>

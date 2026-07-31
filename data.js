@@ -89,14 +89,20 @@ video:{
   lead:{en:'Shot, cut, captioned and scored by me. Tap one — the rest go quiet.',
         fa:'تصویربرداری، تدوین، زیرنویس و صدا، همه به‌دست خودم. یکی را بزن — بقیه ساکت می‌شوند.'},
   fig:'assets/fig/video.png',
+  /* SAMPLE CATEGORIES — rename, add, or move a video between them with `c` */
+  cats:[
+   {id:'explainer', t:{en:'Explainer', fa:'آموزشی'}},
+   {id:'series',    t:{en:'Series',    fa:'مجموعه'}},
+   {id:'social',    t:{en:'Social',    fa:'سوشال'}}
+  ],
   items:[
-   {src:'assets/video/2.mp4', poster:'assets/video/2.jpg',
+   {c:'explainer', src:'assets/video/2.mp4', poster:'assets/video/2.jpg',
     t:{en:'The best time to trade', fa:'بهترین زمان برای معامله'}},
-   {src:'assets/video/14.1.mp4', poster:'assets/video/14.1.jpg',
+   {c:'explainer', src:'assets/video/14.1.mp4', poster:'assets/video/14.1.jpg',
     t:{en:'A stop-loss kills more than the loss', fa:'حد ضرر فقط «ضرر» را نمی‌کشد'}},
-   {src:'assets/video/6.1.mp4', poster:'assets/video/6.1.jpg',
+   {c:'series', src:'assets/video/6.1.mp4', poster:'assets/video/6.1.jpg',
     t:{en:'Hivanameh — do not fall for Bitcoin', fa:'هیوانامه — فریب بیت‌کوین را نخورید'}},
-   {src:'assets/video/Okay_Damage__1_.mp4', poster:'assets/video/Okay_Damage__1_.jpg',
+   {c:'social', src:'assets/video/Okay_Damage__1_.mp4', poster:'assets/video/Okay_Damage__1_.jpg',
     t:{en:'Okay Damage', fa:'اوکی دمیج'}}
   ]
 },
@@ -110,8 +116,14 @@ writing:{
   lead:{en:'Longer pieces. The reader strips the page down to one column — start anywhere.',
         fa:'متن‌های بلندتر. صفحه‌ی خواندن همه‌چیز را جز یک ستون حذف می‌کند — از هرجا شروع کن.'},
   fig:'assets/fig/writing.png',
+  /* SAMPLE CATEGORIES — rename, add, or move an essay between them with `c` */
+  cats:[
+   {id:'philosophy', t:{en:'Philosophy', fa:'فلسفه'}},
+   {id:'politics',   t:{en:'Politics',   fa:'سیاست'}},
+   {id:'marketing',  t:{en:'Marketing',  fa:'بازاریابی'}}
+  ],
   items:[
-   {mins:9,
+   {c:'philosophy', mins:9,
     t:{en:'Placeholder — replace with your first essay', fa:'جای‌گذار — اولین متن خودت را اینجا بگذار'},
     lead:{en:'The first sentence goes here, set large. It is the hook — the site shows it before anything else.',
           fa:'جمله‌ی اول اینجا می‌آید، درشت. این قلاب متن است — سایت پیش از هر چیز دیگری همین را نشان می‌دهد.'},
@@ -121,13 +133,13 @@ writing:{
           fa:['متن کامل را اینجا بگذار، هر پاراگراف یک عضو از این آرایه.',
               'نمای خواندن یک ستون باریک می‌سازد، نواری از پیشرفتِ خواندن بالای صفحه می‌گذارد، و هر پاراگراف را با نزدیک‌شدن محو‌به‌روشن می‌آورد. باقی صفحه از سر راه کنار می‌رود.',
               'دو تا سه صفحه دقیقاً همان طولی است که این نما برایش ساخته شده.']}},
-   {mins:12,
+   {c:'politics', mins:12,
     t:{en:'Placeholder — second essay', fa:'جای‌گذار — متن دوم'},
     lead:{en:'Another opening line. Keep it to one sentence that makes the next one unavoidable.',
           fa:'یک جمله‌ی آغازین دیگر. در حد یک جمله نگهش دار؛ جمله‌ای که خواندن جمله‌ی بعدی را ناگزیر کند.'},
     body:{en:['Paragraph one.','Paragraph two.','Paragraph three.'],
           fa:['پاراگراف اول.','پاراگراف دوم.','پاراگراف سوم.']}},
-   {mins:6,
+   {c:'marketing', mins:6,
     t:{en:'Placeholder — third essay', fa:'جای‌گذار — متن سوم'},
     lead:{en:'Short pieces work here too; the reading time on the card sets the expectation.',
           fa:'متن کوتاه هم اینجا جواب می‌دهد؛ زمان مطالعه روی کارت، انتظار خواننده را تنظیم می‌کند.'},
