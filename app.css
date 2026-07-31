@@ -1,0 +1,184 @@
+/* ============================================================
+   Shared foundation — School of Athens palette, one typeface,
+   one ink colour. Elements stay minimal: hairlines, arcs, space.
+   ============================================================ */
+:root{
+  /* pigments lifted from the painting */
+  --gold:#d9a441;      /* the light falling through the vault */
+  --terra:#a8442a;     /* Plato's robe */
+  --lapis:#2e5a7a;     /* Aristotle's blue */
+  --sky:#6e9bae;       /* the sky in the arch */
+  --sage:#7c8b5e;      /* the olive of the foreground figures */
+  --marble:#e8dcc6;    /* the stone */
+
+  /* one ink colour for every piece of type on the site */
+  --ink:#efe6d6;
+  --line:rgba(239,230,214,.16);
+  --line-hi:rgba(239,230,214,.34);
+  --pane:rgba(239,230,214,.045);
+  --pane-hi:rgba(239,230,214,.085);
+
+  --font:'Vazirmatn',system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{min-height:100%}
+body{
+  font-family:var(--font);font-weight:300;color:var(--ink);
+  background:#241f1d;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+/* the painting's colour distribution: gold overhead, terracotta low-left,
+   lapis low-right, everything settling into warm shadow */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 88% 58% at 50% -8%, rgba(217,164,65,.42), transparent 64%),
+    radial-gradient(ellipse 62% 58% at 6% 100%, rgba(168,68,42,.34), transparent 66%),
+    radial-gradient(ellipse 64% 58% at 96% 94%, rgba(46,90,122,.40), transparent 66%),
+    radial-gradient(ellipse 46% 38% at 80% 6%, rgba(110,155,174,.22), transparent 62%),
+    radial-gradient(ellipse 44% 36% at 16% 22%, rgba(124,139,94,.14), transparent 62%),
+    linear-gradient(168deg,#332b26 0%,#2a2422 44%,#231f22 74%,#1e1b1f 100%);}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>")}
+
+/* ---------- type: one family, one colour, hierarchy by weight + opacity ---------- */
+h1,h2,h3{font-weight:300;line-height:1.12;letter-spacing:-.01em}
+[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3{line-height:1.4;letter-spacing:0}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;opacity:.5}
+[dir=rtl] .eyebrow{letter-spacing:.12em}
+.lead{font-size:clamp(17px,2.2vw,21px);line-height:1.7;opacity:.86}
+[dir=rtl] .lead{line-height:2.05}
+p.body{font-size:15px;line-height:1.95;opacity:.66;max-width:58ch}
+[dir=rtl] p.body{line-height:2.25}
+
+/* ---------- fixed, centred language switch: never moves ---------- */
+.lang{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:95;
+  display:flex;align-items:center;padding:12px 0 20px;direction:ltr}
+.lang button{background:none;border:none;cursor:pointer;color:var(--ink);opacity:.42;
+  font-family:var(--font);font-size:12px;letter-spacing:.2em;
+  width:96px;text-align:center;padding:9px 0;transition:opacity .3s}
+.lang button.fa{letter-spacing:.02em;font-size:13px}
+.lang button:hover{opacity:.72}
+.lang button.on{opacity:1}
+.lang i{width:1px;height:13px;background:var(--line-hi)}
+
+/* ---------- close ---------- */
+.shut{position:fixed;top:18px;inset-inline-start:18px;z-index:70;
+  background:rgba(28,25,26,.72);backdrop-filter:blur(8px);
+  border:1px solid var(--line-hi);color:var(--ink);opacity:.72;
+  font-family:var(--font);font-size:11px;letter-spacing:.18em;
+  cursor:pointer;padding:11px 18px;border-radius:2px;transition:.3s;display:none}
+.shut:hover{opacity:1;border-color:var(--gold)}
+body.open .shut{display:block}
+
+/* ============================================================
+   SECTION BODIES — identical in both shells
+   ============================================================ */
+.sec{max-width:1060px;margin:0 auto;width:100%}
+.sec-head{margin-bottom:clamp(28px,5vh,52px)}
+.sec-head h2{font-size:clamp(30px,5.2vw,54px);margin:12px 0 18px}
+.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);opacity:.55;margin:26px 0}
+
+/* --- I · me --- */
+.me-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:start}
+.facts{border-top:1px solid var(--line)}
+.fact{display:flex;justify-content:space-between;gap:16px;padding:14px 0;
+  border-bottom:1px solid var(--line);font-size:13.5px;opacity:.74}
+.fact em{font-style:normal;opacity:.6;white-space:nowrap;font-size:12px}
+.links{display:grid;gap:1px;margin-top:30px;background:var(--line);border:1px solid var(--line)}
+.link{background:rgba(36,31,29,.6);padding:16px 18px;display:flex;justify-content:space-between;
+  gap:14px;font-size:14px;text-decoration:none;color:var(--ink);opacity:.78;transition:.3s}
+.link:hover{opacity:1;background:rgba(217,164,65,.10)}
+.link span:last-child{opacity:.55;font-size:12.5px}
+
+/* --- II · images: masonry, mixed ratios --- */
+.gal{columns:3;column-gap:14px}
+.gal figure{break-inside:avoid;margin-bottom:14px;cursor:pointer;position:relative;
+  border:1px solid var(--line);overflow:hidden;transition:border-color .35s,transform .5s var(--ease)}
+.gal figure:hover{border-color:var(--gold);transform:translateY(-4px)}
+.gal img{display:block;width:100%;height:auto}
+.gal figcaption{position:absolute;inset-inline:0;bottom:0;padding:26px 14px 12px;font-size:12px;
+  background:linear-gradient(transparent,rgba(20,17,16,.9));opacity:0;transition:opacity .35s}
+.gal figure:hover figcaption{opacity:1}
+
+/* lightbox */
+.box{position:fixed;inset:0;z-index:90;background:rgba(20,17,16,.94);backdrop-filter:blur(10px);
+  display:none;place-items:center;padding:64px 5vw 92px}
+.box.on{display:grid}
+.box img{max-width:100%;max-height:100%;object-fit:contain;border:1px solid var(--line-hi)}
+.box .cap{position:fixed;bottom:60px;inset-inline:0;text-align:center;font-size:13px;opacity:.7}
+.box .nav{position:fixed;top:50%;transform:translateY(-50%);background:none;border:none;
+  color:var(--ink);opacity:.45;font-size:30px;cursor:pointer;padding:20px;transition:opacity .3s}
+.box .nav:hover{opacity:1}
+.box .prev{inset-inline-start:8px}.box .next{inset-inline-end:8px}
+
+/* --- III · video: 9:16 --- */
+.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.vid{position:relative;aspect-ratio:9/16;border:1px solid var(--line);overflow:hidden;
+  background:#1b1817;cursor:pointer;transition:border-color .35s,transform .5s var(--ease)}
+.vid:hover{border-color:var(--gold);transform:translateY(-4px)}
+.vid video{width:100%;height:100%;object-fit:cover;display:block}
+.vid .tag{position:absolute;inset-inline:0;bottom:0;padding:34px 14px 14px;font-size:12.5px;
+  line-height:1.5;background:linear-gradient(transparent,rgba(20,17,16,.92));pointer-events:none}
+.vid .cue{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;transition:opacity .3s}
+.vid .cue s{display:block;width:52px;height:52px;border:1px solid var(--line-hi);border-radius:50%;
+  position:relative;background:rgba(20,17,16,.4)}
+.vid .cue s::after{content:'';position:absolute;left:53%;top:50%;transform:translate(-50%,-50%);
+  border-inline-start:9px solid var(--ink);border-top:6px solid transparent;border-bottom:6px solid transparent}
+[dir=rtl] .vid .cue s::after{transform:translate(-50%,-50%) scaleX(-1)}
+.vid.playing .cue{opacity:0}
+
+/* --- IV · writing --- */
+.essays{border-top:1px solid var(--line)}
+.essay{border-bottom:1px solid var(--line);padding:clamp(22px,3.2vw,34px) 4px;cursor:pointer;
+  display:grid;grid-template-columns:auto 1fr auto;gap:clamp(16px,3vw,38px);align-items:baseline;
+  transition:padding-inline-start .4s var(--ease),background .35s}
+.essay:hover{padding-inline-start:16px;background:rgba(217,164,65,.06)}
+.essay .idx{font-size:12px;opacity:.4;width:22px}
+.essay h3{font-size:clamp(19px,2.6vw,26px);margin-bottom:12px}
+.essay .hook{font-size:15px;line-height:1.75;opacity:.6;max-width:62ch}
+[dir=rtl] .essay .hook{line-height:2.05}
+.essay .mins{font-size:11.5px;letter-spacing:.14em;opacity:.45;white-space:nowrap}
+
+/* the reader: one column, nothing else */
+.reader{position:fixed;inset:0;z-index:92;background:#211d1c;overflow-y:auto;
+  opacity:0;pointer-events:none;transition:opacity .45s}
+.reader.on{opacity:1;pointer-events:auto}
+.reader .bar{position:fixed;top:0;inset-inline-start:0;height:2px;width:0;background:var(--gold);z-index:3;
+  transition:width .1s linear}
+.reader .col{max-width:660px;margin:0 auto;padding:clamp(88px,14vh,160px) 24px clamp(120px,20vh,220px)}
+.reader h2{font-size:clamp(28px,4.6vw,44px);margin:14px 0 26px}
+.reader .hook{font-size:clamp(18px,2.4vw,22px);line-height:1.75;opacity:.85;
+  padding-inline-start:18px;border-inline-start:2px solid var(--gold)}
+[dir=rtl] .reader .hook{line-height:2.1}
+.reader p.t{font-size:17px;line-height:2;opacity:0;transform:translateY(14px);
+  transition:opacity .7s,transform .8s;margin-top:28px}
+[dir=rtl] .reader p.t{line-height:2.35;font-size:16px}
+.reader p.t.in{opacity:.82;transform:none}
+.reader .end{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);
+  font-size:12px;letter-spacing:.16em;opacity:.45;background:none;border-inline:none;border-bottom:none;
+  color:var(--ink);font-family:var(--font);cursor:pointer;width:100%;text-align:start;padding-bottom:8px}
+.reader .end:hover{opacity:.9}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1000px){
+  .gal{columns:2}
+  .vids{grid-template-columns:repeat(2,1fr)}
+  .me-grid{grid-template-columns:1fr;gap:34px}
+}
+@media(max-width:620px){
+  .gal{columns:1}
+  .vids{grid-template-columns:1fr 1fr;gap:10px}
+  .essay{grid-template-columns:auto 1fr;gap:14px}
+  .essay .mins{grid-column:2;margin-top:10px}
+  .lang button{width:78px}
+  .shut{top:12px;inset-inline-start:12px;padding:10px 14px}
+  .box{padding:52px 12px 84px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .reader p.t{opacity:.82;transform:none}
+}
