@@ -101,11 +101,11 @@ images:{
   /* the filter buttons. `All` and every count are worked out automatically —
      add a category here, then tag images with its id. */
   cats:[
-   {id:'telgram',   title:{en:'telegram',     fa'تلگرام'}},
+   {id:'Telgram',   title:{en:'Telegram',     fa'تلگرام'}},
    {id:'IG carousles',   title:{en:'IG carousles',      fa:'کاروسل‌های اینستاگرام'}},
    {id:'IG stories', title:{en:'IG stories',   fa:'استوری‌های اینستاگرام'}},
    {id:'IG covers',    title:{en:'IG covers',       fa:'کاور پست‌های اینستاگرام'}},
-   {id:'Logos + ads + header',    title:{en:'Logos + ads + header', fa:'لوگوها، تبلیغات وهدر'}}
+   {id:'Logos + Ads + Header',    title:{en:'Logos + Ads + Header', fa:'لوگوها، تبلیغات وهدر'}}
   ],
 
   items:[
@@ -137,13 +137,13 @@ video:{
   num:'III',
   title:{en:'Video', fa:'ویدیو'},
   lead:{en:'Shot, cut, captioned and scored by me. Tap one — the rest go quiet.',
-        fa:'تصویربرداری، تدوین، زیرنویس و صدا، همه به‌دست خودم. یکی را بزن — بقیه ساکت می‌شوند.'},
+        fa:'ریلز و موشن‌ها را با کمک هوش مصنوعی و ادیت‌ها را بدون آن اما با نرم افزارهای ساده ساخته‌ام، چند ویدیو از مجری‌گری خود نیز بارگذاری کرده‌ام'},
   fig:'assets/fig/video.png',
 
   cats:[
-   {id:'explainer', title:{en:'Explainer', fa:'آموزشی'}},
-   {id:'series',    title:{en:'Series',    fa:'مجموعه'}},
-   {id:'social',    title:{en:'Social',    fa:'سوشال'}}
+   {id:'reels', title:{en:'reels', fa:'ریلز‌ها'}},
+   {id:'motions',    title:{en:'motions',    fa:'موشن‌ها'}},
+   {id:'edits',    title:{en:'edits',    fa:'سوشال'}}
   ],
 
   items:[
