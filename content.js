@@ -94,8 +94,8 @@ me:{
 images:{
   num:'II',
   title:{en:'Images', fa:'تصویر'},
-  lead:{en:'Posters, key visuals and campaign frames. Every one drawn, set and finished by me.',
-        fa:'پوستر، تصویر کلیدی و فریم‌های کمپین. همه را خودم طراحی، حروف‌چینی و تکمیل کرده‌ام.'},
+  lead:{en:'I designed these images with the help of AI and some editing using simple software tools.',
+        fa:'تصاویر را با کمک هوش مصنوعی و کمی ادیت با نرم‌افزارهای ساده طراحی کرده‌ام.'},
   fig:'assets/fig/images.png',
 
   /* the filter buttons. `All` and every count are worked out automatically —
