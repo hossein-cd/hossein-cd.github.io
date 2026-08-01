@@ -154,7 +154,9 @@ video:{
    {cat:'series',    src:'assets/video/6.1.mp4',  poster:'assets/video/6.1.jpg',
     title:{en:'Hivanameh — do not fall for Bitcoin', fa:'هیوانامه — فریب بیت‌کوین را نخورید'}},
    {cat:'social',    src:'assets/video/Okay_Damage__1_.mp4', poster:'assets/video/Okay_Damage__1_.jpg',
-    title:{en:'Okay Damage', fa:'اوکی دمیج'}}
+    title:{en:'Okay Damage', fa:'اوکی دمیج'}},
+    {cat:'social',    src:'assets/video/damage_effect.mp4', poster:'assets/video/Okay_Damage__1_.jpg',
+    title:{en:'Ofor now', fa:'فعلا'}}
   ]
 },
 
