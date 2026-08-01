@@ -40,34 +40,34 @@ meta:{
 me:{
   num:'I',
   title:{en:'Me', fa:'من'},
-  lead:{en:'Born 1380 in Tehran. I read political philosophy and I make things that have to be seen.',
-        fa:'متولد ۱۳۸۰، تهران. فلسفه سیاسی می‌خوانم و چیزهایی می‌سازم که باید دیده شوند.'},
+  lead:{en:'I am interested in people, the humanities, and talking with others.',
+        fa:'به انسان، علوم انسانی و حرف زدن با بقیه آدم‌ها علاقه دارم!'},
   fig:'assets/fig/me.png',
 
   /* the bio. one entry per paragraph. */
   body:{
    en:[
-    `BA in Political Science and an MA in Political Philosophy, both at the University of Tehran. Three years of content production — first at Telewebion, then at the Iranian Entrepreneurs Assembly — and now digital marketing at Hiva Ex.`,
-    `The work itself is simple to describe: find the thing that actually needs saying, then build a shape for it that gets looked at. Poster, video, or a long argument — the format is the last decision, not the first.`,
-    `Underneath it there is a reading habit I have not been able to shake: ontology, and the line that runs from Plato through Kant to Heidegger. It does not show up on a campaign brief. It decides which arguments I think are worth making.`
+    `I have written where I studied and worked in my resume,`,
+    `but what matters more to me is understanding`,
+    `how I can change people’s perceptions of a product or a company.`
    ],
    fa:[
-    `کارشناسی علوم سیاسی و کارشناسی ارشد فلسفه سیاسی، هر دو در دانشگاه تهران. سه سال تولید محتوا — اول در تلوبیون، بعد در مجمع کارآفرینان ایران — و حالا دیجیتال مارکتینگ در هیوا اکس.`,
-    `توصیف کار ساده است: چیزی را که واقعاً باید گفته شود پیدا می‌کنم و بعد شکلی برایش می‌سازم که نگاه را نگه دارد. پوستر، ویدئو، یا یک استدلال بلند — قالب آخرین تصمیم است، نه اولی.`,
-    `زیر همه‌ی این‌ها عادتی هست که نتوانسته‌ام کنارش بگذارم: هستی‌شناسی، و خطی که از افلاطون تا کانت و هایدگر کشیده می‌شود. توی بریف هیچ کمپینی نمی‌آید. اما تعیین می‌کند کدام حرف به نظرم ارزش گفتن دارد.`
+    `اینکه کجا درس خوانده و کار کردم را در رزومه نوشته‌ام،`,
+    `اما از آنها مهم تر این اسست که دوست دارم بدانم،`,
+    `چگونه می‌توان ذهنیت مردم به کالای یک شرکت را تغییر داد.`
    ]
   },
 
   /* the two-column table: [what it was, when it was] */
   facts:{
    en:[['Hiva Ex — Digital marketing','1404 — now'],
-       ['Iranian Entrepreneurs Assembly — Content','1403 — 1404'],
+       ['Iranian Entrepreneurs forum - Content spesialist','1403 — 1404'],
        ['Telewebion — Content','1401 — 1403'],
        ['MA Political Philosophy, Univ. of Tehran','1404 — now'],
        ['BA Political Science, Univ. of Tehran','1399 — 1404']],
-   fa:[['هیوا اکس — دیجیتال مارکتینگ','۱۴۰۴ — تا الان'],
-       ['مجمع کارآفرینان ایران — تولید محتوا','۱۴۰۳ — ۱۴۰۴'],
-       ['تلوبیون — تولید محتوا','۱۴۰۱ — ۱۴۰۳'],
+   fa:[['هیوا اکس — کارشناس دیجیتال مارکتینگ','۱۴۰۴ — تا الان'],
+       ['مجمع کارآفرینان ایران — کارشناس تولید محتوا','۱۴۰۳ — ۱۴۰۴'],
+       ['تلوبیون — تولیدکننده محتوا','۱۴۰۱ — ۱۴۰۳'],
        ['ارشد فلسفه سیاسی، دانشگاه تهران','۱۴۰۴ — تا الان'],
        ['کارشناسی علوم سیاسی، دانشگاه تهران','۱۳۹۹ — ۱۴۰۴']]
   },
