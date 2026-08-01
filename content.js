@@ -109,7 +109,7 @@ images:{
   ],
 
   items:[
-   {cat:'poster',   src:'assets/img/23.jpg',       title:{en:'No algorithm exists',              fa:'هیچ الگوریتمی وجود ندارد'}},
+   {cat:'telegram',   src:'assets/img/23.jpg',       title:{en:'No algorithm exists',              fa:'هیچ الگوریتمی وجود ندارد'}},
    {cat:'social',   src:'assets/img/kant.jpg',     title:{en:'Messi or Yamal, according to Kant',fa:'مسی یا یامال از نظر کانت'}},
    {cat:'poster',   src:'assets/img/20.1.jpg',     title:{en:'Never trade again',                fa:'دیگه هیچ‌وقت ترید نکن'}},
    {cat:'social',   src:'assets/img/54.jpg',       title:{en:'The magic formula',                fa:'فرمول جادویی ترید'}},
