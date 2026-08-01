@@ -136,14 +136,15 @@ images:{
 video:{
   num:'III',
   title:{en:'Video', fa:'ویدیو'},
-  lead:{en:'Shot, cut, captioned and scored by me. Tap one — the rest go quiet.',
+  lead:{en:'I created the reels and motion videos with the help of AI, while the edits were done without AI using simple software tools. I have also uploaded a few videos of myself presenting.',
         fa:'ریلز و موشن‌ها را با کمک هوش مصنوعی و ادیت‌ها را بدون آن اما با نرم افزارهای ساده ساخته‌ام، چند ویدیو از مجری‌گری خود نیز بارگذاری کرده‌ام'},
   fig:'assets/fig/video.png',
 
   cats:[
    {id:'reels', title:{en:'reels', fa:'ریلز‌ها'}},
    {id:'motions',    title:{en:'motions',    fa:'موشن‌ها'}},
-   {id:'edits',    title:{en:'edits',    fa:'سوشال'}}
+   {id:'edits',    title:{en:'edits',    fa:'سوشال'}},
+   {id:'Host',    title:{en:'Hosts',    fa:'مجری‌گری'}}
   ],
 
   items:[
@@ -165,14 +166,14 @@ video:{
 writing:{
   num:'IV',
   title:{en:'Writing', fa:'متن'},
-  lead:{en:'Longer pieces. The reader strips the page down to one column — start anywhere.',
-        fa:'متن‌های بلندتر. صفحه‌ی خواندن همه‌چیز را جز یک ستون حذف می‌کند — از هرجا شروع کن.'},
+  lead:{en:'I have uploaded some of my short stories, reports I have written from meetings, and research projects I conducted at university here.',
+        fa:'برخی از داستان‌های کوتاه، گزارشاتی که از جلسات نوشته‌ام و پژوهش‌های که در دانشگاه انجام داده‌ام اینجا گذاشته‌ام.'},
   fig:'assets/fig/writing.png',
 
   cats:[
-   {id:'philosophy', title:{en:'Philosophy', fa:'فلسفه'}},
-   {id:'politics',   title:{en:'Politics',   fa:'سیاست'}},
-   {id:'marketing',  title:{en:'Marketing',  fa:'بازاریابی'}}
+   {id:'Stories', title:{en:'stories', fa:'داستان‌ها'}},
+   {id:'Reports',   title:{en:'Reports',   fa:'گزارش‌ها'}},
+   {id:'Reasearches',  title:{en:'Reasearches',  fa:'پژوهش‌ها'}}
   ],
 
   items:[]   /* filled by essays.js — do not write essays here */
