@@ -28,10 +28,10 @@ meta:{
   role:{en:'Digital market specialist and content creator',
         fa:'کارشناس دیجیتال مارکتینگ و تولیدکننده‌محتوا'},
   /* the big line on the front page; the second line is set in a lighter tone */
-  hero:{en:['A portfolio you walk into,','not one you scroll past.'],
-        fa:['نمونه‌کاری که واردش می‌شوی،','نه چیزی که از کنارش رد می‌شوی.']},
-  heroSub:{en:'Four rooms. Take whichever one you came for.',
-           fa:'چهار اتاق. هرکدام را که برایش آمده‌ای باز کن.'}
+  hero:{en:['Hello, I’m Hossein, and I have uploaded my portfolio here.'],
+        fa:['سلام، من حسین هستم و نمونه کارهای خود را اینجا بارگذاری کرده‌ام.!']},
+  heroSub:{en:'Click on the desired section.',
+           fa:'روی قسمت مورد نظر کلیک کنید!'}
 },
 
 /* -----------------------------------------------------------------------------
