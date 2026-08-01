@@ -93,7 +93,7 @@ me:{
    -------------------------------------------------------------------------- */
 images:{
   num:'II',
-  title:{en:'Images', fa:'تصویر'},
+  title:{en:'Images', fa:'تصاویر'},
   lead:{en:'I designed these images with the help of AI and some editing using simple software tools.',
         fa:'تصاویر را با کمک هوش مصنوعی و کمی ادیت با نرم‌افزارهای ساده طراحی کرده‌ام.'},
   fig:'assets/fig/images.png',
@@ -101,11 +101,11 @@ images:{
   /* the filter buttons. `All` and every count are worked out automatically —
      add a category here, then tag images with its id. */
   cats:[
-   {id:'poster',   title:{en:'Posters',     fa:'پوستر'}},
-   {id:'social',   title:{en:'Social',      fa:'سوشال'}},
-   {id:'campaign', title:{en:'Campaigns',   fa:'کمپین'}},
-   {id:'brand',    title:{en:'Brand',       fa:'برند'}},
-   {id:'photo',    title:{en:'Photography', fa:'عکاسی'}}
+   {id:'telgram',   title:{en:'telegram',     fa'تلگرام'}},
+   {id:'IG carousles',   title:{en:'IG carousles',      fa:'کاروسل‌های اینستاگرام'}},
+   {id:'IG stories', title:{en:'IG stories',   fa:'استوری‌های اینستاگرام'}},
+   {id:'IG covers',    title:{en:'IG covers',       fa:'کاور پست‌های اینستاگرام'}},
+   {id:'Logos + ads + header',    title:{en:'Logos + ads + header', fa:'لوگوها، تبلیغات وهدر'}}
   ],
 
   items:[
