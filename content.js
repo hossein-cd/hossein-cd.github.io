@@ -29,7 +29,7 @@ meta:{
         fa:'کارشناس دیجیتال مارکتینگ و تولیدکننده‌ محتوا'},
   /* the big line on the front page; the second line is set in a lighter tone */
   hero:{en:['Hello, I’m Hossein, and I have uploaded my portfolio here.'],
-        fa:['سلام، من حسین هستم و نمونه کارهای خود را اینجا بارگذاری کرده‌ام!']},
+        fa:['سلام، من حسین هستم و نمونه کارهای خود را اینجا بارگذاری کرده‌ام.']},
   heroSub:{en:'Click on the desired section.',
            fa:'روی قسمت مورد نظر کلیک کنید!'}
 },
