@@ -24,9 +24,9 @@ const DATA = {
    WHO — the name in the header and the words on the front page
    -------------------------------------------------------------------------- */
 meta:{
-  name:{en:'welcome', fa:'خوش آمدید!'},
+  name:{en:'Welcome!', fa:'خوش آمدید!'},
   role:{en:'Digital market specialist and content creator',
-        fa:'کارشناس دیجیتال مارکتینگ و تولیدکنندهحتوا'},
+        fa:'کارشناس دیجیتال مارکتینگ و تولیدکننده‌محتوا'},
   /* the big line on the front page; the second line is set in a lighter tone */
   hero:{en:['A portfolio you walk into,','not one you scroll past.'],
         fa:['نمونه‌کاری که واردش می‌شوی،','نه چیزی که از کنارش رد می‌شوی.']},
