@@ -48,6 +48,10 @@ function shown(key){
   const c=sel[key];
   return DATA[key].items.filter(x=>c==='all'||x.cat===c);
 }
+function catLabel(key,id){
+  const c=(DATA[key].cats||[]).find(c=>c.id===id);
+  return c?t(c.title):'';
+}
 function chips(key){
   const d=DATA[key];
   if(!d.cats||!d.cats.length)return '';
@@ -86,16 +90,22 @@ function me(){
     </div></div>`;
 }
 
+/* Most pieces have no caption yet. Rather than render an empty gradient bar on
+   hover, drop the figcaption entirely and let the category name carry the alt
+   text — a filename would tell a screen reader nothing. */
 function images(){
-  return `<div class="gal">${shown('images').map((im,i)=>
-    `<figure data-i="${i}"><img src="${im.src}" alt="${t(im.title,im.src)}" loading="lazy">
-       <figcaption>${t(im.title,im.src)}</figcaption></figure>`).join('')}</div>`;
+  return `<div class="gal">${shown('images').map((im,i)=>{
+    const cap=im.title?t(im.title,im.src):'';
+    return `<figure data-i="${i}">
+      <img src="${im.src}" alt="${cap||catLabel('images',im.cat)}" loading="lazy">
+      ${cap?`<figcaption>${cap}</figcaption>`:''}</figure>`;}).join('')}</div>`;
 }
 
 function video(){
   return `<div class="vids">${shown('video').map(v=>
     `<div class="vid"><video src="${v.src}" poster="${v.poster}" playsinline preload="none"></video>
-       <div class="cue"><s></s></div><div class="tag">${t(v.title,v.src)}</div></div>`).join('')}</div>`;
+       <div class="cue"><s></s></div>${v.title?`<div class="tag">${t(v.title,v.src)}</div>`:''}
+     </div>`).join('')}</div>`;
 }
 
 function writing(){
@@ -139,7 +149,8 @@ function step(n){
   const it=shown('images');if(!it.length)return;
   gi=(gi+n+it.length)%it.length;
   box.querySelector('img').src=it[gi].src;
-  box.querySelector('.cap').textContent=`${t(it[gi].title)} — ${gi+1} ${t(DATA.ui.of)} ${it.length}`;
+  const name=it[gi].title?t(it[gi].title)+' — ':'';
+  box.querySelector('.cap').textContent=`${name}${gi+1} ${t(DATA.ui.of)} ${it.length}`;
 }
 function openBox(i){overlays();gi=i;step(0);box.classList.add('on')}
 

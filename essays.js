@@ -35,7 +35,7 @@ DATA.writing.items = [
 
 /* ------------------------------------------------------------------------- */
 {
-cat:'philosophy',
+cat:'stories',
 
 title:{
   en:`Placeholder — replace this with your first essay`,
@@ -72,7 +72,7 @@ fa:`
 
 /* ------------------------------------------------------------------------- */
 {
-cat:'politics',
+cat:'reports',
 
 title:{
   en:`Placeholder — second essay`,
@@ -99,7 +99,7 @@ fa:`
 
 /* ------------------------------------------------------------------------- */
 {
-cat:'marketing',
+cat:'research',
 
 title:{
   en:`Placeholder — third essay`,
